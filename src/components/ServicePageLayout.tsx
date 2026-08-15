@@ -42,17 +42,17 @@ function ServiceNavbar({ onContact }: { onContact: () => void }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const navLinkClass = "text-sm font-medium text-white/70 transition-colors hover:text-white";
+  const navLinkClass = "text-sm font-medium text-foreground/70 transition-colors hover:text-foreground";
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div
-        className="mx-auto mt-4 flex w-[min(94%,1200px)] items-center justify-between rounded-2xl px-5 py-3"
+        className="mx-auto mt-4 flex w-[min(94%,1200px)] items-center justify-between rounded-full px-5 py-3"
         style={{
-          background: "rgba(10,10,10,0.9)",
+          background: "rgba(255,255,255,0.92)",
           backdropFilter: "blur(20px) saturate(160%)",
-          border: "1px solid rgba(220,38,38,0.22)",
-          boxShadow: "0 4px 40px rgba(220,38,38,0.08)",
+          border: "1px solid rgba(0,0,0,0.08)",
+          boxShadow: "0 4px 24px rgba(0,0,0,0.07)",
         }}
       >
         <Link
@@ -65,8 +65,7 @@ function ServiceNavbar({ onContact }: { onContact: () => void }) {
             alt="LateralWorx Logo"
             className="h-10 w-auto object-contain"
             style={{
-              mixBlendMode: "screen",
-              filter: "drop-shadow(0 0 6px rgba(220,38,38,0.5)) brightness(1.1) contrast(1.1)",
+              filter: "brightness(0.9) contrast(1.1)",
             }}
           />
         </Link>
@@ -91,9 +90,9 @@ function ServiceNavbar({ onContact }: { onContact: () => void }) {
                   transition={{ duration: 0.18 }}
                   className="absolute left-0 top-full mt-2 overflow-hidden rounded-xl py-1.5"
                   style={{
-                    background: "rgba(13,13,13,0.97)",
-                    border: "1px solid rgba(220,38,38,0.25)",
-                    boxShadow: "0 16px 50px rgba(220,38,38,0.15)",
+                    background: "rgba(255,255,255,0.97)",
+                    border: "1px solid rgba(0,0,0,0.08)",
+                    boxShadow: "0 16px 50px rgba(0,0,0,0.08)",
                     minWidth: "220px",
                   }}
                 >
@@ -101,7 +100,7 @@ function ServiceNavbar({ onContact }: { onContact: () => void }) {
                     <Link
                       key={item.href}
                       to={item.href}
-                      className="block px-4 py-2.5 text-sm text-white/70 transition-all hover:bg-red-600/10 hover:text-white"
+                      className="block px-4 py-2.5 text-sm text-foreground/70 transition-all hover:bg-red-600/10 hover:text-foreground"
                       onClick={() => setServicesOpen(false)}
                     >
                       {item.label}
@@ -120,15 +119,15 @@ function ServiceNavbar({ onContact }: { onContact: () => void }) {
           onClick={onContact}
           className="hidden rounded-full px-5 py-2 text-sm font-semibold text-white transition-all hover:brightness-110 md:block"
           style={{
-            background: "linear-gradient(135deg, #dc2626, #991b1b)",
-            boxShadow: "0 0 0 1px rgba(220,38,38,0.3), 0 8px 24px rgba(220,38,38,0.25)",
+            background: "linear-gradient(135deg, #dc2626, #b91c1c)",
+            boxShadow: "0 2px 12px rgba(220,38,38,0.28)",
           }}
         >
           Talk to us
         </button>
 
         <button
-          className="flex items-center justify-center rounded-lg p-2 text-white/70 hover:text-white md:hidden"
+          className="flex items-center justify-center rounded-lg p-2 text-foreground/70 hover:text-foreground md:hidden"
           onClick={() => setMobileOpen((v) => !v)}
         >
           {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -144,14 +143,14 @@ function ServiceNavbar({ onContact }: { onContact: () => void }) {
             transition={{ duration: 0.2 }}
             className="mx-auto mt-2 w-[min(94%,1200px)] overflow-hidden rounded-xl px-4 py-3 md:hidden"
             style={{
-              background: "rgba(10,10,10,0.97)",
-              border: "1px solid rgba(220,38,38,0.22)",
+              background: "rgba(255,255,255,0.97)",
+              border: "1px solid rgba(0,0,0,0.08)",
               backdropFilter: "blur(20px)",
             }}
           >
-            <Link to="/" className="block py-2.5 text-sm text-white/80 hover:text-white" onClick={() => setMobileOpen(false)}>Home</Link>
+            <Link to="/" className="block py-2.5 text-sm text-foreground/80 hover:text-foreground" onClick={() => setMobileOpen(false)}>Home</Link>
             {SERVICES_NAV.map((item) => (
-              <Link key={item.href} to={item.href} className="block py-2 text-sm text-white/60 hover:text-white pl-3" onClick={() => setMobileOpen(false)}>
+              <Link key={item.href} to={item.href} className="block py-2 text-sm text-foreground/60 hover:text-foreground pl-3" onClick={() => setMobileOpen(false)}>
                 {item.label}
               </Link>
             ))}
@@ -194,7 +193,7 @@ export function ServicePageLayout({ data }: { data: ServicePageData }) {
         <div className="mx-auto max-w-6xl">
           <Link
             to="/"
-            className="mb-8 inline-flex items-center gap-2 text-sm text-white/40 transition-colors hover:text-white/70"
+            className="mb-8 inline-flex items-center gap-2 text-sm text-foreground/40 transition-colors hover:text-foreground/70"
           >
             <ArrowLeft className="size-3.5" />
             Back to Home
@@ -206,15 +205,15 @@ export function ServicePageLayout({ data }: { data: ServicePageData }) {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <span
-              className="inline-flex items-center rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.28em] text-white/80"
-              style={{ background: "rgba(220,38,38,0.12)", border: "1px solid rgba(220,38,38,0.3)" }}
+              className="inline-flex items-center rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.28em] text-red-700"
+              style={{ background: "rgba(220,38,38,0.08)", border: "1px solid rgba(220,38,38,0.22)" }}
             >
               LateralWorx Services
             </span>
             <h1 className="mt-5 text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
               <span className="text-gradient">{data.hero.title}</span>
             </h1>
-            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/50">
+            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-foreground/60">
               {data.hero.subtitle}
             </p>
           </motion.div>
@@ -249,14 +248,15 @@ export function ServicePageLayout({ data }: { data: ServicePageData }) {
               <div
                 className="rounded-2xl p-8 lg:p-10"
                 style={{
-                  background: "rgba(14,14,14,0.8)",
-                  border: "1px solid rgba(220,38,38,0.15)",
+                  background: "rgba(255,255,255,0.85)",
+                  border: "1px solid rgba(0,0,0,0.08)",
                   backdropFilter: "blur(12px)",
+                  boxShadow: "0 2px 16px rgba(0,0,0,0.06)",
                 }}
               >
                 <h2 className="text-2xl font-semibold sm:text-3xl">{svc.title}</h2>
                 <p className="mt-2 text-base font-medium text-red-400">{svc.subtitle}</p>
-                <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/55">{svc.description}</p>
+                <p className="mt-4 max-w-3xl text-sm leading-relaxed text-foreground/60">{svc.description}</p>
 
                 {/* ERP sub-cards support (passed as special bullets starting with "##") */}
                 <div className="mt-8">
@@ -299,7 +299,7 @@ function renderBullets(bullets: string[]) {
       {groups.map((g, gi) => (
         <div key={gi}>
           {g.header && (
-            <h3 className="mb-3 text-base font-semibold text-white/80">{g.header}</h3>
+            <h3 className="mb-3 text-base font-semibold text-foreground/80">{g.header}</h3>
           )}
           {g.subheader && (
             <h4 className="mb-2 text-sm font-semibold text-red-400">{g.subheader}</h4>
@@ -307,7 +307,7 @@ function renderBullets(bullets: string[]) {
           {g.items.length > 0 && (
             <ul className="grid gap-2.5 sm:grid-cols-2">
               {g.items.map((item, ii) => (
-                <li key={ii} className="flex items-start gap-2.5 text-sm text-white/55">
+                <li key={ii} className="flex items-start gap-2.5 text-sm text-foreground/60">
                   <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-red-500" />
                   <span>{item}</span>
                 </li>

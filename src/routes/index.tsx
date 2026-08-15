@@ -158,17 +158,17 @@ function Navbar({ onContact }: { onContact: () => void }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const navLinkClass = "text-sm font-medium text-white/70 transition-colors hover:text-white";
+  const navLinkClass = "text-sm font-medium text-foreground/70 transition-colors hover:text-foreground";
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div
-        className="mx-auto mt-4 flex w-[min(94%,1200px)] items-center justify-between rounded-2xl px-5 py-3"
+        className="mx-auto mt-4 flex w-[min(94%,1200px)] items-center justify-between rounded-full px-5 py-3"
         style={{
-          background: "rgba(10,10,10,0.85)",
+          background: "rgba(255,255,255,0.92)",
           backdropFilter: "blur(20px) saturate(160%)",
-          border: "1px solid rgba(220,38,38,0.22)",
-          boxShadow: "0 4px 40px rgba(220,38,38,0.08)",
+          border: "1px solid rgba(0,0,0,0.08)",
+          boxShadow: "0 4px 24px rgba(0,0,0,0.07)",
         }}
       >
         <Link
@@ -181,8 +181,7 @@ function Navbar({ onContact }: { onContact: () => void }) {
             alt="LateralWorx Logo"
             className="h-10 w-auto object-contain"
             style={{
-              mixBlendMode: "screen",
-              filter: "drop-shadow(0 0 6px rgba(220,38,38,0.5)) brightness(1.1) contrast(1.1)",
+              filter: "brightness(0.9) contrast(1.1)",
             }}
           />
         </Link>
@@ -210,9 +209,9 @@ function Navbar({ onContact }: { onContact: () => void }) {
                   transition={{ duration: 0.18 }}
                   className="absolute left-0 top-full mt-2 overflow-hidden rounded-xl py-1.5"
                   style={{
-                    background: "rgba(13,13,13,0.97)",
-                    border: "1px solid rgba(220,38,38,0.25)",
-                    boxShadow: "0 16px 50px rgba(220,38,38,0.15)",
+                    background: "rgba(255,255,255,0.97)",
+                    border: "1px solid rgba(0,0,0,0.08)",
+                    boxShadow: "0 16px 50px rgba(0,0,0,0.08)",
                     minWidth: "220px",
                   }}
                   role="menu"
@@ -223,7 +222,7 @@ function Navbar({ onContact }: { onContact: () => void }) {
                         key={item.href}
                         to={item.href}
                         role="menuitem"
-                        className="block px-4 py-2.5 text-sm text-white/70 transition-all hover:bg-red-600/10 hover:text-white"
+                        className="block px-4 py-2.5 text-sm text-foreground/70 transition-all hover:bg-red-600/10 hover:text-foreground"
                         onClick={() => setServicesOpen(false)}
                       >
                         {item.label}
@@ -233,7 +232,7 @@ function Navbar({ onContact }: { onContact: () => void }) {
                         key={item.href}
                         href={item.href}
                         role="menuitem"
-                        className="block px-4 py-2.5 text-sm text-white/70 transition-all hover:bg-red-600/10 hover:text-white"
+                        className="block px-4 py-2.5 text-sm text-foreground/70 transition-all hover:bg-red-600/10 hover:text-foreground"
                         onClick={() => setServicesOpen(false)}
                       >
                         {item.label}
@@ -254,8 +253,8 @@ function Navbar({ onContact }: { onContact: () => void }) {
           id="nav-talk-btn"
           className="hidden rounded-full px-5 py-2 text-sm font-semibold text-white transition-all hover:brightness-110 md:block"
           style={{
-            background: "linear-gradient(135deg, #dc2626, #991b1b)",
-            boxShadow: "0 0 0 1px rgba(220,38,38,0.3), 0 8px 24px rgba(220,38,38,0.25)",
+            background: "linear-gradient(135deg, #dc2626, #b91c1c)",
+            boxShadow: "0 2px 12px rgba(220,38,38,0.28)",
           }}
         >
           Talk to us
@@ -263,7 +262,7 @@ function Navbar({ onContact }: { onContact: () => void }) {
 
         <button
           id="mobile-menu-btn"
-          className="flex items-center justify-center rounded-lg p-2 text-white/70 hover:text-white md:hidden"
+          className="flex items-center justify-center rounded-lg p-2 text-foreground/70 hover:text-foreground md:hidden"
           onClick={() => setMobileOpen((v) => !v)}
           aria-label="Toggle menu"
         >
@@ -280,13 +279,13 @@ function Navbar({ onContact }: { onContact: () => void }) {
             transition={{ duration: 0.2 }}
             className="mx-auto mt-2 w-[min(94%,1200px)] overflow-hidden rounded-xl px-4 py-3 md:hidden"
             style={{
-              background: "rgba(10,10,10,0.97)",
-              border: "1px solid rgba(220,38,38,0.22)",
+              background: "rgba(255,255,255,0.97)",
+              border: "1px solid rgba(0,0,0,0.08)",
               backdropFilter: "blur(20px)",
             }}
           >
-            <a href="#home" className="block py-2.5 text-sm text-white/80 hover:text-white" onClick={() => setMobileOpen(false)}>Home</a>
-            <button className="flex w-full items-center justify-between py-2.5 text-sm text-white/80 hover:text-white" onClick={() => setMobileServicesOpen((v) => !v)}>
+            <a href="#home" className="block py-2.5 text-sm text-foreground/80 hover:text-foreground" onClick={() => setMobileOpen(false)}>Home</a>
+            <button className="flex w-full items-center justify-between py-2.5 text-sm text-foreground/80 hover:text-foreground" onClick={() => setMobileServicesOpen((v) => !v)}>
               Services
               <ChevronDown className={`size-3.5 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`} />
             </button>
@@ -301,11 +300,11 @@ function Navbar({ onContact }: { onContact: () => void }) {
                 >
                   {SERVICES_DROPDOWN.map((item) => (
                     item.href.startsWith("/") ? (
-                      <Link key={item.href} to={item.href} className="block py-2 text-sm text-white/60 hover:text-white" onClick={() => setMobileOpen(false)}>
+                      <Link key={item.href} to={item.href} className="block py-2 text-sm text-foreground/60 hover:text-foreground" onClick={() => setMobileOpen(false)}>
                         {item.label}
                       </Link>
                     ) : (
-                      <a key={item.href} href={item.href} className="block py-2 text-sm text-white/60 hover:text-white" onClick={() => setMobileOpen(false)}>
+                      <a key={item.href} href={item.href} className="block py-2 text-sm text-foreground/60 hover:text-foreground" onClick={() => setMobileOpen(false)}>
                         {item.label}
                       </a>
                     )
@@ -313,7 +312,7 @@ function Navbar({ onContact }: { onContact: () => void }) {
                 </motion.div>
               )}
             </AnimatePresence>
-            <Link to="/about" className="block py-2.5 text-sm text-white/80 hover:text-white" onClick={() => setMobileOpen(false)}>About</Link>
+            <Link to="/about" className="block py-2.5 text-sm text-foreground/80 hover:text-foreground" onClick={() => setMobileOpen(false)}>About</Link>
             <Link
               to="/contact"
               className="mt-1 block text-center w-full rounded-full py-2.5 text-sm font-semibold text-white"
@@ -347,8 +346,8 @@ function Home() {
             className="max-w-4xl"
           >
             <span
-              className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.28em] text-white/90"
-              style={{ background: "rgba(220,38,38,0.12)", border: "1px solid rgba(220,38,38,0.35)" }}
+              className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.28em] text-red-700"
+              style={{ background: "rgba(220,38,38,0.08)", border: "1px solid rgba(220,38,38,0.22)" }}
             >
               <Database className="size-3 text-red-500" />
               Trusted IT Partner · Est. 2024
@@ -360,11 +359,11 @@ function Home() {
               Through Innovative IT Solutions
             </h1>
 
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/60">
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-foreground/60">
               Your trusted partner for comprehensive IT services, cloud solutions, and digital transformation
             </p>
 
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/45">
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/50">
               We provide cutting-edge technology solutions to help businesses streamline operations, enhance
               productivity, and achieve their strategic goals. From cloud migration to cybersecurity, ERP
               implementation to managed IT services, we deliver excellence at every step.
@@ -376,8 +375,8 @@ function Home() {
                 id="hero-cta-btn"
                 className="group flex items-center gap-2 rounded-full px-7 py-3.5 font-display text-sm font-semibold text-white transition-all hover:brightness-110"
                 style={{
-                  background: "linear-gradient(135deg, #dc2626, #991b1b)",
-                  boxShadow: "0 0 0 1px rgba(220,38,38,0.35), 0 20px 50px rgba(220,38,38,0.3)",
+                  background: "linear-gradient(135deg, #dc2626, #b91c1c)",
+                  boxShadow: "0 2px 20px rgba(220,38,38,0.25)",
                 }}
               >
                 Get Started Today
@@ -385,7 +384,7 @@ function Home() {
               </Link>
               <a
                 href="#cloud"
-                className="flex items-center gap-2 rounded-full border border-white/10 px-7 py-3.5 text-sm font-medium text-white/70 transition-all hover:border-red-500/40 hover:text-white"
+                className="flex items-center gap-2 rounded-full border border-foreground/10 px-7 py-3.5 text-sm font-medium text-foreground/70 transition-all hover:border-red-500/40 hover:text-foreground"
               >
                 Explore Services
               </a>
@@ -405,13 +404,13 @@ function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
                 whileHover={{ y: -4, scale: 1.02 }}
-                className="glass group flex flex-col gap-3 rounded-xl p-5 transition-all hover:border-red-500/30"
+                className="glass group flex flex-col gap-3 rounded-xl p-5 transition-all hover:border-red-500/30 bg-white border border-black/5 shadow-sm"
                 style={{ textDecoration: "none" }}
               >
-                <div className="flex size-10 items-center justify-center rounded-lg" style={{ background: "rgba(220,38,38,0.12)" }}>
-                  <item.icon className="size-5 text-red-500" />
+                <div className="flex size-10 items-center justify-center rounded-lg" style={{ background: "rgba(220,38,38,0.08)" }}>
+                  <item.icon className="size-5 text-red-600" />
                 </div>
-                <Link to={item.href} className="font-display text-sm font-semibold text-white/90 stretched-link">{item.label}</Link>
+                <Link to={item.href} className="font-display text-sm font-semibold text-foreground/90 stretched-link">{item.label}</Link>
               </motion.div>
             ))}
           </div>
@@ -434,21 +433,21 @@ function Home() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <span
-              className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.28em] text-white/90"
-              style={{ background: "rgba(220,38,38,0.12)", border: "1px solid rgba(220,38,38,0.35)" }}
+              className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.28em] text-red-700"
+              style={{ background: "rgba(220,38,38,0.08)", border: "1px solid rgba(220,38,38,0.22)" }}
             >
               About LateralWorx
             </span>
             <h2 className="mt-5 text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">
               Your Trusted Technology Partner
             </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/55">
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-foreground/55">
               LateralWorx is a full-service IT company dedicated to helping businesses leverage technology as
               a competitive advantage. Our team of experienced engineers and consultants brings enterprise-grade
               expertise to organizations of every size.
             </p>
             <div className="mt-8">
-              <Link to="/about" className="inline-flex items-center gap-2 rounded-full border border-white/10 px-7 py-3 text-sm font-medium text-white/70 transition-all hover:border-red-500/40 hover:text-white">Read Full Story</Link>
+              <Link to="/about" className="inline-flex items-center gap-2 rounded-full border border-foreground/10 px-7 py-3 text-sm font-medium text-foreground/70 transition-all hover:border-red-500/40 hover:text-foreground">Read Full Story</Link>
             </div>
           </motion.div>
         </div>

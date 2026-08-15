@@ -53,7 +53,7 @@ function ServerRack({ x, ports = 6 }: { x: number; ports?: number }) {
     <group position={[x, 0, 0]}>
       <mesh>
         <boxGeometry args={[1.5, 3.4, 1.1]} />
-        <meshStandardMaterial color="#1a0d0d" metalness={0.7} roughness={0.35} />
+        <meshStandardMaterial color="#111111" metalness={0.8} roughness={0.2} />
       </mesh>
       {Array.from({ length: ports }).map((_, i) => (
         <mesh key={i} position={[-0.35 + (i % 2) * 0.7, 1.35 - Math.floor(i / 2) * 0.55, 0.57]}>
@@ -108,7 +108,7 @@ function EthernetCable() {
       <group ref={plug}>
         <mesh>
           <boxGeometry args={[0.42, 0.3, 0.75]} />
-          <meshStandardMaterial color="#1a0d0d" metalness={0.6} roughness={0.3} />
+          <meshStandardMaterial color="#111111" metalness={0.8} roughness={0.2} />
         </mesh>
         <mesh position={[0, 0, -0.4]}>
           <boxGeometry args={[0.3, 0.2, 0.1]} />
@@ -117,7 +117,7 @@ function EthernetCable() {
       </group>
       <mesh ref={cable} rotation={[Math.PI / 2, 0, 0]}>
         <cylinderGeometry args={[0.07, 0.07, 1, 12, 1, true]} />
-        <meshStandardMaterial color={VIOLET} emissive={VIOLET} emissiveIntensity={0.6} />
+        <meshStandardMaterial color={NEON} emissive={NEON} emissiveIntensity={0.8} roughness={0.4} />
       </mesh>
     </group>
   );
@@ -341,11 +341,11 @@ function CameraRig() {
 
 /** Nudges the scene away from the side the copy sits on. */
 const SHIFTS: { p: number; x: number }[] = [
-  { p: 0.1, x: 2.4 },
-  { p: 0.29, x: -2.4 },
-  { p: 0.49, x: 2.4 },
-  { p: 0.69, x: -2.4 },
-  { p: 0.9, x: 2.4 },
+  { p: 0.1, x: 4.8 },
+  { p: 0.29, x: -4.8 },
+  { p: 0.49, x: 4.8 },
+  { p: 0.69, x: -4.8 },
+  { p: 0.9, x: 4.8 },
 ];
 
 function SceneShift({ children }: { children: ReactNode }) {
@@ -381,8 +381,8 @@ export default function SceneCanvas() {
       gl={{ antialias: true, alpha: true }}
       camera={{ position: [0, 0.4, 9], fov: 45 }}
     >
-      <color attach="background" args={["#0a0a0a"]} />
-      <fog attach="fog" args={["#0a0a0a", 12, 30]} />
+      <color attach="background" args={["#f8f8f8"]} />
+      <fog attach="fog" args={["#f8f8f8", 12, 30]} />
       <ambientLight intensity={0.5} />
       <directionalLight position={[4, 6, 6]} intensity={1.1} />
       <pointLight position={[-5, 2, 4]} color={VIOLET} intensity={40} distance={20} />
@@ -392,21 +392,21 @@ export default function SceneCanvas() {
       <CameraRig />
 
       <SceneShift>
-      <Stage start={0} end={0.18}>
-        <DataCenterStage />
-      </Stage>
-      <Stage start={0.2} end={0.38}>
-        <CloudNodesStage />
-      </Stage>
-      <Stage start={0.4} end={0.58}>
-        <ShieldStage />
-      </Stage>
-      <Stage start={0.6} end={0.78}>
-        <NetworkHubStage />
-      </Stage>
-      <Stage start={0.8} end={1.01}>
-        <GrowthStage />
-      </Stage>
+        <Stage start={0} end={0.18}>
+          <DataCenterStage />
+        </Stage>
+        <Stage start={0.2} end={0.38}>
+          <CloudNodesStage />
+        </Stage>
+        <Stage start={0.4} end={0.58}>
+          <ShieldStage />
+        </Stage>
+        <Stage start={0.6} end={0.78}>
+          <NetworkHubStage />
+        </Stage>
+        <Stage start={0.8} end={1.01}>
+          <GrowthStage />
+        </Stage>
       </SceneShift>
     </Canvas>
   );

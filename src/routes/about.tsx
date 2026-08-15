@@ -30,12 +30,12 @@ function AboutPage() {
 
       <header className="fixed inset-x-0 top-0 z-50">
         <div
-          className="mx-auto mt-4 flex w-[min(94%,1200px)] items-center justify-between rounded-2xl px-5 py-3"
+          className="mx-auto mt-4 flex w-[min(94%,1200px)] items-center justify-between rounded-full px-5 py-3"
           style={{
-            background: "rgba(10,10,10,0.9)",
+            background: "rgba(255,255,255,0.92)",
             backdropFilter: "blur(20px) saturate(160%)",
-            border: "1px solid rgba(220,38,38,0.22)",
-            boxShadow: "0 4px 40px rgba(220,38,38,0.08)",
+            border: "1px solid rgba(0,0,0,0.08)",
+            boxShadow: "0 4px 24px rgba(0,0,0,0.07)",
           }}
         >
           <Link
@@ -48,23 +48,22 @@ function AboutPage() {
               alt="LateralWorx Logo"
               className="h-10 w-auto object-contain"
               style={{
-                mixBlendMode: "screen",
-                filter: "drop-shadow(0 0 6px rgba(220,38,38,0.5)) brightness(1.1) contrast(1.1)",
+                filter: "brightness(0.9) contrast(1.1)",
               }}
             />
           </Link>
           <nav className="hidden items-center gap-7 md:flex">
-            <Link to="/" className="text-sm font-medium text-white/70 transition-colors hover:text-white">Home</Link>
-            <Link to="/#cloud" className="text-sm font-medium text-white/70 transition-colors hover:text-white">Services</Link>
-            <Link to="/about" className="text-sm font-medium text-white">About</Link>
-            <Link to="/contact" className="text-sm font-medium text-white/70 transition-colors hover:text-white">Contact</Link>
+            <Link to="/" className="text-sm font-medium text-foreground/60 transition-colors hover:text-foreground">Home</Link>
+            <Link to="/#cloud" className="text-sm font-medium text-foreground/60 transition-colors hover:text-foreground">Services</Link>
+            <Link to="/about" className="text-sm font-medium text-red-600">About</Link>
+            <Link to="/contact" className="text-sm font-medium text-foreground/60 transition-colors hover:text-foreground">Contact</Link>
           </nav>
           <button
             onClick={() => setOpen(true)}
             className="hidden rounded-full px-5 py-2 text-sm font-semibold text-white transition-all hover:brightness-110 md:block"
             style={{
-              background: "linear-gradient(135deg, #dc2626, #991b1b)",
-              boxShadow: "0 0 0 1px rgba(220,38,38,0.3), 0 8px 24px rgba(220,38,38,0.25)",
+              background: "linear-gradient(135deg, #dc2626, #b91c1c)",
+              boxShadow: "0 2px 12px rgba(220,38,38,0.28)",
             }}
           >
             Talk to us
@@ -81,8 +80,8 @@ function AboutPage() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <span
-              className="inline-flex items-center rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.28em] text-white/80"
-              style={{ background: "rgba(220,38,38,0.12)", border: "1px solid rgba(220,38,38,0.3)" }}
+              className="inline-flex items-center rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.28em] text-red-700"
+              style={{ background: "rgba(220,38,38,0.08)", border: "1px solid rgba(220,38,38,0.22)" }}
             >
               About LateralWorx
             </span>
@@ -105,8 +104,8 @@ function AboutPage() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl font-semibold mb-6">Who We Are</h2>
-            <div className="prose prose-invert max-w-none space-y-6 text-white/60 text-lg leading-relaxed">
-              <p className="font-medium text-white/90 text-xl">
+            <div className="prose max-w-none space-y-6 text-foreground/60 text-lg leading-relaxed">
+              <p className="font-medium text-foreground/90 text-xl">
                 LateralWorx is a leading IT services company dedicated to transforming businesses through innovative technology solutions.
               </p>
               <p>
@@ -127,17 +126,18 @@ function AboutPage() {
               transition={{ duration: 0.6 }}
               className="rounded-2xl p-8"
               style={{
-                background: "rgba(14,14,14,0.8)",
-                border: "1px solid rgba(220,38,38,0.15)",
+                background: "rgba(255,255,255,0.85)",
+                border: "1px solid rgba(0,0,0,0.08)",
                 backdropFilter: "blur(12px)",
+                boxShadow: "0 2px 16px rgba(0,0,0,0.06)",
               }}
             >
               <Target className="size-8 text-red-500 mb-5" />
               <h3 className="text-2xl font-semibold mb-4">Our Mission</h3>
-              <p className="text-white/60 leading-relaxed mb-4">
+              <p className="text-foreground/60 leading-relaxed mb-4">
                 To empower businesses with cutting-edge IT solutions that drive innovation, efficiency, and growth. We are committed to delivering exceptional service and building long-term partnerships with our clients.
               </p>
-              <p className="text-white/60 leading-relaxed">
+              <p className="text-foreground/60 leading-relaxed">
                 Our mission is to be the trusted technology partner that helps businesses navigate the complexities of the digital landscape and achieve sustainable success.
               </p>
             </motion.div>
@@ -149,17 +149,18 @@ function AboutPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="rounded-2xl p-8"
               style={{
-                background: "rgba(14,14,14,0.8)",
-                border: "1px solid rgba(220,38,38,0.15)",
+                background: "rgba(255,255,255,0.85)",
+                border: "1px solid rgba(0,0,0,0.08)",
                 backdropFilter: "blur(12px)",
+                boxShadow: "0 2px 16px rgba(0,0,0,0.06)",
               }}
             >
               <Lightbulb className="size-8 text-red-500 mb-5" />
               <h3 className="text-2xl font-semibold mb-4">Our Vision</h3>
-              <p className="text-white/60 leading-relaxed mb-4">
+              <p className="text-foreground/60 leading-relaxed mb-4">
                 To be recognized as the premier IT services provider, known for our innovation, reliability, and commitment to client success. We envision a future where technology seamlessly enables business transformation.
               </p>
-              <p className="text-white/60 leading-relaxed">
+              <p className="text-foreground/60 leading-relaxed">
                 We strive to continuously evolve our services and solutions to stay ahead of technological trends and provide our clients with the tools they need to thrive in an ever-changing business environment.
               </p>
             </motion.div>
@@ -182,10 +183,10 @@ function AboutPage() {
                 { title: "Agility", icon: "⚡", desc: "We adapt quickly to changing requirements and deliver solutions efficiently." },
                 { title: "Customer Focus", icon: "👥", desc: "Our clients' success is our top priority, and we go above and beyond to ensure their satisfaction." },
               ].map((value, i) => (
-                <div key={value.title} className="p-6 rounded-xl bg-white/5 border border-white/10 hover:border-red-500/30 transition-colors">
+                <div key={value.title} className="p-6 rounded-xl bg-foreground/4 border border-foreground/10 hover:border-red-500/40 transition-colors">
                   <div className="text-2xl mb-4">{value.icon}</div>
                   <h4 className="text-lg font-semibold mb-2">{value.title}</h4>
-                  <p className="text-sm text-white/50 leading-relaxed">{value.desc}</p>
+                  <p className="text-sm text-foreground/55 leading-relaxed">{value.desc}</p>
                 </div>
               ))}
             </div>
@@ -199,7 +200,7 @@ function AboutPage() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl font-semibold mb-6">Our Team</h2>
-            <p className="text-white/60 text-lg mb-10">Our team consists of experienced professionals dedicated to delivering exceptional IT solutions.</p>
+            <p className="text-foreground/55 text-lg mb-10">Our team consists of experienced professionals dedicated to delivering exceptional IT solutions.</p>
             
             <div className="space-y-4">
               {[
@@ -207,11 +208,11 @@ function AboutPage() {
                 { title: "Technical Specialists", icon: "👩‍💻", desc: "Our technical team specializes in cloud technologies, infrastructure, security, and enterprise solutions." },
                 { title: "Support Team", icon: "🛡️", desc: "Our support team provides 24/7 assistance to ensure your systems run smoothly at all times." },
               ].map(member => (
-                <div key={member.title} className="flex gap-4 items-start p-6 rounded-xl bg-white/5 border border-white/10">
+                <div key={member.title} className="flex gap-4 items-start p-6 rounded-xl bg-foreground/4 border border-foreground/10">
                   <div className="text-3xl bg-red-500/10 p-3 rounded-lg border border-red-500/20">{member.icon}</div>
                   <div>
                     <h4 className="text-lg font-semibold mb-1">{member.title}</h4>
-                    <p className="text-white/50">{member.desc}</p>
+                    <p className="text-foreground/55">{member.desc}</p>
                   </div>
                 </div>
               ))}

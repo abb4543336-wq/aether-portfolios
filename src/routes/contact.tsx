@@ -44,10 +44,10 @@ function ContactPage() {
         <div
           className="mx-auto mt-4 flex w-[min(94%,1200px)] items-center justify-between rounded-2xl px-5 py-3"
           style={{
-            background: "rgba(10,10,10,0.9)",
+            background: "rgba(255,255,255,0.92)",
             backdropFilter: "blur(20px) saturate(160%)",
-            border: "1px solid rgba(220,38,38,0.22)",
-            boxShadow: "0 4px 40px rgba(220,38,38,0.08)",
+            border: "1px solid rgba(0,0,0,0.08)",
+            boxShadow: "0 4px 24px rgba(0,0,0,0.07)",
           }}
         >
           <Link
@@ -60,16 +60,15 @@ function ContactPage() {
               alt="LateralWorx Logo"
               className="h-10 w-auto object-contain"
               style={{
-                mixBlendMode: "screen",
-                filter: "drop-shadow(0 0 6px rgba(220,38,38,0.5)) brightness(1.1) contrast(1.1)",
+                filter: "brightness(0.9) contrast(1.1)",
               }}
             />
           </Link>
           <nav className="hidden items-center gap-7 md:flex">
-            <Link to="/" className="text-sm font-medium text-white/70 transition-colors hover:text-white">Home</Link>
-            <Link to="/#cloud" className="text-sm font-medium text-white/70 transition-colors hover:text-white">Services</Link>
-            <Link to="/about" className="text-sm font-medium text-white/70 transition-colors hover:text-white">About</Link>
-            <Link to="/contact" className="text-sm font-medium text-white">Contact</Link>
+            <Link to="/" className="text-sm font-medium text-foreground/60 transition-colors hover:text-foreground">Home</Link>
+            <Link to="/#cloud" className="text-sm font-medium text-foreground/60 transition-colors hover:text-foreground">Services</Link>
+            <Link to="/about" className="text-sm font-medium text-foreground/60 transition-colors hover:text-foreground">About</Link>
+            <Link to="/contact" className="text-sm font-medium text-red-600">Contact</Link>
           </nav>
         </div>
       </header>
@@ -83,15 +82,15 @@ function ContactPage() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <span
-              className="inline-flex items-center rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.28em] text-white/80"
-              style={{ background: "rgba(220,38,38,0.12)", border: "1px solid rgba(220,38,38,0.3)" }}
+              className="inline-flex items-center rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.28em] text-red-700"
+              style={{ background: "rgba(220,38,38,0.08)", border: "1px solid rgba(220,38,38,0.22)" }}
             >
               Contact Us
             </span>
             <h1 className="mt-5 text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
               We'd love to <span className="text-gradient">hear from you.</span>
             </h1>
-            <p className="mt-6 text-white/60 text-lg">Get in touch today!</p>
+            <p className="mt-6 text-foreground/60 text-lg">Get in touch today!</p>
           </motion.div>
         </div>
       </section>
@@ -109,36 +108,36 @@ function ContactPage() {
           >
             <div>
               <h2 className="text-2xl font-semibold mb-3">Get in Touch</h2>
-              <p className="text-white/60">We're here to help! Reach out to us through any of the following channels.</p>
+              <p className="text-foreground/60">We're here to help! Reach out to us through any of the following channels.</p>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-6">
-              <div className="p-6 rounded-xl bg-white/5 border border-white/10">
-                <MapPin className="size-6 text-red-500 mb-4" />
+              <div className="p-6 rounded-xl bg-foreground/4 border border-foreground/10">
+                <MapPin className="size-6 text-red-600 mb-4" />
                 <h3 className="font-semibold mb-2">Office Location</h3>
-                <p className="text-sm text-white/60 leading-relaxed">Suite 405 Beaumont Plaza<br />Beaumont Road<br />Karachi, Pakistan</p>
+                <p className="text-sm text-foreground/60 leading-relaxed">Suite 405 Beaumont Plaza<br />Beaumont Road<br />Karachi, Pakistan</p>
               </div>
               
-              <div className="p-6 rounded-xl bg-white/5 border border-white/10">
-                <Mail className="size-6 text-red-500 mb-4" />
+              <div className="p-6 rounded-xl bg-foreground/4 border border-foreground/10">
+                <Mail className="size-6 text-red-600 mb-4" />
                 <h3 className="font-semibold mb-2">Email</h3>
-                <a href="mailto:info@lateralworx.com" className="text-sm text-red-400 hover:text-red-300">info@lateralworx.com</a>
+                <a href="mailto:info@lateralworx.com" className="text-sm text-red-600 hover:text-red-500">info@lateralworx.com</a>
               </div>
 
-              <div className="p-6 rounded-xl bg-white/5 border border-white/10 sm:col-span-2">
-                <Clock className="size-6 text-red-500 mb-4" />
+              <div className="p-6 rounded-xl bg-foreground/4 border border-foreground/10 sm:col-span-2">
+                <Clock className="size-6 text-red-600 mb-4" />
                 <h3 className="font-semibold mb-2">Business Hours</h3>
-                <ul className="text-sm text-white/60 space-y-2">
+                <ul className="text-sm text-foreground/60 space-y-2">
                   <li className="flex justify-between"><span>Monday - Friday:</span> <span>9:00 AM - 6:00 PM</span></li>
                   <li className="flex justify-between"><span>Saturday:</span> <span>10:00 AM - 2:00 PM</span></li>
-                  <li className="flex justify-between text-white/40"><span>Sunday:</span> <span>Closed</span></li>
+                  <li className="flex justify-between text-foreground/40"><span>Sunday:</span> <span>Closed</span></li>
                 </ul>
               </div>
             </div>
 
-            <div className="p-6 rounded-xl" style={{ background: "linear-gradient(135deg, rgba(220,38,38,0.1), rgba(0,0,0,0))", border: "1px solid rgba(220,38,38,0.2)" }}>
-              <h3 className="font-semibold mb-2 text-white">Quick Response</h3>
-              <p className="text-sm text-white/60 leading-relaxed">For urgent matters, please call us or send an email. We typically respond within 24 hours.</p>
+            <div className="p-6 rounded-xl" style={{ background: "linear-gradient(135deg, rgba(220,38,38,0.05), rgba(0,0,0,0))", border: "1px solid rgba(220,38,38,0.15)" }}>
+              <h3 className="font-semibold mb-2 text-foreground">Quick Response</h3>
+              <p className="text-sm text-foreground/60 leading-relaxed">For urgent matters, please call us or send an email. We typically respond within 24 hours.</p>
             </div>
           </motion.div>
 
@@ -149,38 +148,39 @@ function ContactPage() {
             transition={{ duration: 0.7 }}
             className="rounded-2xl p-8 lg:p-10"
             style={{
-              background: "rgba(14,14,14,0.8)",
-              border: "1px solid rgba(220,38,38,0.15)",
+              background: "rgba(255,255,255,0.85)",
+              border: "1px solid rgba(0,0,0,0.08)",
               backdropFilter: "blur(12px)",
+              boxShadow: "0 2px 16px rgba(0,0,0,0.06)",
             }}
           >
             <h2 className="text-2xl font-semibold mb-6">Send us a Message</h2>
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid sm:grid-cols-2 gap-5">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-white/80">Name *</label>
-                  <input required type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-red-500 transition-colors" />
+                  <label className="text-sm font-medium text-foreground/80">Name *</label>
+                  <input required type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full bg-white/40 border border-foreground/10 rounded-lg px-4 py-2.5 text-foreground focus:outline-none focus:border-red-500 transition-colors" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-white/80">Email *</label>
-                  <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-red-500 transition-colors" />
+                  <label className="text-sm font-medium text-foreground/80">Email *</label>
+                  <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full bg-white/40 border border-foreground/10 rounded-lg px-4 py-2.5 text-foreground focus:outline-none focus:border-red-500 transition-colors" />
                 </div>
               </div>
               <div className="grid sm:grid-cols-2 gap-5">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-white/80">Phone</label>
-                  <input type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-red-500 transition-colors" />
+                  <label className="text-sm font-medium text-foreground/80">Phone</label>
+                  <input type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full bg-white/40 border border-foreground/10 rounded-lg px-4 py-2.5 text-foreground focus:outline-none focus:border-red-500 transition-colors" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-white/80">Subject</label>
-                  <input type="text" value={formData.subject} onChange={e => setFormData({...formData, subject: e.target.value})} className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-red-500 transition-colors" />
+                  <label className="text-sm font-medium text-foreground/80">Subject</label>
+                  <input type="text" value={formData.subject} onChange={e => setFormData({...formData, subject: e.target.value})} className="w-full bg-white/40 border border-foreground/10 rounded-lg px-4 py-2.5 text-foreground focus:outline-none focus:border-red-500 transition-colors" />
                 </div>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium text-white/80">Message *</label>
-                <textarea required rows={5} value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-red-500 transition-colors resize-none" />
+                <label className="text-sm font-medium text-foreground/80">Message *</label>
+                <textarea required rows={5} value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} className="w-full bg-white/40 border border-foreground/10 rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-red-500 transition-colors resize-none" />
               </div>
-              <button type="submit" className="w-full flex items-center justify-center gap-2 rounded-lg py-3.5 text-sm font-semibold text-white transition-all hover:brightness-110 mt-6" style={{ background: "linear-gradient(135deg, #dc2626, #991b1b)", boxShadow: "0 4px 14px rgba(220,38,38,0.2)" }}>
+              <button type="submit" className="w-full flex items-center justify-center gap-2 rounded-lg py-3.5 text-sm font-semibold text-white transition-all hover:brightness-110 mt-6" style={{ background: "linear-gradient(135deg, #dc2626, #b91c1c)", boxShadow: "0 4px 14px rgba(220,38,38,0.25)" }}>
                 Send Message
                 <Send className="size-4" />
               </button>
