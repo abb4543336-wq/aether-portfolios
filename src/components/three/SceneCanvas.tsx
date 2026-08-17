@@ -399,9 +399,9 @@ function CameraRig() {
 const SHIFTS: { p: number; x: number }[] = [
   { p: 0.09, x: 4.8 },   // DataCenter Stage
   { p: 0.29, x: -4.8 },  // CloudNodes Stage
-  { p: 0.49, x: 4.8 },   // Shield Stage
-  { p: 0.50, x: -4.8 },  // NetworkHub Stage
-  { p: 0.65, x: 4.8 },   // Growth Stage
+  { p: 0.45, x: 4.8 },   // Shield Stage
+  { p: 0.60, x: -4.8 },  // NetworkHub Stage (Increased hold till 0.60 - 0.70)
+  { p: 0.82, x: 4.8 },   // Growth Stage (Shifted target from 0.60 to 0.82)
 ];
 
 function SceneShift({ children }: { children: ReactNode }) {
@@ -454,13 +454,13 @@ export default function SceneCanvas() {
   <Stage start={0.2} end={0.38}>
     <CloudNodesStage />
   </Stage>
-  <Stage start={0.4} end={0.45}>
+  <Stage start={0.4} end={0.49}>
     <ShieldStage />
   </Stage>
-  <Stage start={0.47} end={0.6}>
+  <Stage start={0.50} end={0.70}>
     <NetworkHubStage />
   </Stage>
-  <Stage start={0.62} end={1.01}>
+  <Stage start={0.71} end={1.01}>
     <GrowthStage />
   </Stage>
 </SceneShift>
