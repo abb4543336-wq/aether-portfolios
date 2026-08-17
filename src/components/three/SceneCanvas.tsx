@@ -1,5 +1,5 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Grid } from "@react-three/drei";
+import { Float, Grid, Line } from "@react-three/drei";
 import { useMemo, useRef, type ReactNode } from "react";
 import * as THREE from "three";
 import { damp, rangeProgress, readScrollProgress, scrollState } from "@/lib/scroll-progress";
@@ -268,15 +268,57 @@ function NetworkHubStage() {
     </group>
   );
 }
-
-function GrowthStage() {
+export function GrowthStage() {
   const group = useRef<THREE.Group>(null);
   const bars = [0.8, 1.4, 2.1, 2.9, 3.6];
+
+  const { tubeGeometry, arrowHeadGeometry, arrowPos, arrowRot } = useMemo(() => {
+    // 🔴 Z-value ko 0.45 kar diya hai taaki arrow bars ke bilkul Samne (Outer Layer par) aaye
+    const curve = new THREE.QuadraticBezierCurve3(
+      new THREE.Vector3(-2.0, -0.5, -1.55), // Start point (Bars ke aage outer space mein)
+      new THREE.Vector3(0.6, -0.5, -1.90),  // Middle curve bend
+      new THREE.Vector3(2.2, 3.1, -1.55)    // Top-right tip position
+    );
+
+    // Thick 3D Curved Stem (Tube)
+    const tubeGeo = new THREE.TubeGeometry(curve, 60, 0.06, 12, false);
+
+    // Image jaisa Flat Sharp Triangular Arrow Head
+    const shape = new THREE.Shape();
+    shape.moveTo(0, 0.45);        // Top sharp tip
+    shape.lineTo(-0.28, -0.25);   // Bottom-left corner
+    shape.lineTo(0, -0.1);        // Inner notch bend
+    shape.lineTo(0.28, -0.25);    // Bottom-right corner
+    shape.closePath();
+
+    const arrowHeadGeo = new THREE.ExtrudeGeometry(shape, {
+      depth: 0.1,
+      bevelEnabled: true,
+      bevelThickness: 0.02,
+      bevelSize: 0.02,
+    });
+    arrowHeadGeo.center();
+
+    // End Position & Tangent Rotation
+    const endPoint = curve.getPoint(1);
+    const tangent = curve.getTangent(1);
+    const angle = Math.atan2(tangent.y, tangent.x);
+
+    return {
+      tubeGeometry: tubeGeo,
+      arrowHeadGeometry: arrowHeadGeo,
+      arrowPos: [endPoint.x, endPoint.y, endPoint.z] as [number, number, number],
+      arrowRot: [0, 0, angle - Math.PI / 2] as [number, number, number],
+    };
+  }, []);
+
   useFrame((_, dt) => {
     if (group.current) group.current.rotation.y = damp(group.current.rotation.y, 0.5, 2, dt);
   });
+
   return (
     <group ref={group} rotation={[0, -0.4, 0]}>
+      {/* 📊 Bars Rendering */}
       {bars.map((h, i) => (
         <mesh key={i} position={[(i - 2) * 0.85, h / 2 - 1.2, 0]}>
           <boxGeometry args={[0.5, h, 0.5]} />
@@ -289,16 +331,30 @@ function GrowthStage() {
           />
         </mesh>
       ))}
-      <Float speed={1.5} floatIntensity={1}>
+
+      {/* 📈 CURVED ARROW (Shifted Forward / Outer) */}
+      <group>
+        {/* Curved Stem */}
+        <mesh geometry={tubeGeometry}>
+          <meshStandardMaterial color={NEON} emissive={NEON} emissiveIntensity={2} />
+        </mesh>
+
+        {/* Sharp Triangular Arrowhead */}
+        <mesh position={arrowPos} rotation={arrowRot} geometry={arrowHeadGeometry}>
+          <meshStandardMaterial color={NEON} emissive={NEON} emissiveIntensity={2.5} />
+        </mesh>
+      </group>
+
+      {/* Floating TorusKnot */}
+      {/* <Float speed={1.5} floatIntensity={1}>
         <mesh position={[1.9, 2.9, 0]}>
           <torusKnotGeometry args={[0.45, 0.12, 90, 12]} />
           <meshStandardMaterial color={NEON} emissive={NEON} emissiveIntensity={1.6} />
         </mesh>
-      </Float>
+      </Float> */}
     </group>
   );
 }
-
 const CAM_KEYS: { p: number; pos: [number, number, number] }[] = [
   { p: 0, pos: [0, 0.4, 9] },
   { p: 0.18, pos: [1.2, 1.1, 10.5] },
@@ -341,11 +397,11 @@ function CameraRig() {
 
 /** Nudges the scene away from the side the copy sits on. */
 const SHIFTS: { p: number; x: number }[] = [
-  { p: 0.1, x: 4.8 },
-  { p: 0.29, x: -4.8 },
-  { p: 0.49, x: 4.8 },
-  { p: 0.69, x: -4.8 },
-  { p: 0.9, x: 4.8 },
+  { p: 0.09, x: 4.8 },   // DataCenter Stage
+  { p: 0.29, x: -4.8 },  // CloudNodes Stage
+  { p: 0.49, x: 4.8 },   // Shield Stage
+  { p: 0.64, x: -4.8 },  // NetworkHub Stage
+  { p: 0.75, x: 4.8 },   // Growth Stage
 ];
 
 function SceneShift({ children }: { children: ReactNode }) {
@@ -392,22 +448,22 @@ export default function SceneCanvas() {
       <CameraRig />
 
       <SceneShift>
-        <Stage start={0} end={0.18}>
-          <DataCenterStage />
-        </Stage>
-        <Stage start={0.2} end={0.38}>
-          <CloudNodesStage />
-        </Stage>
-        <Stage start={0.4} end={0.58}>
-          <ShieldStage />
-        </Stage>
-        <Stage start={0.6} end={0.78}>
-          <NetworkHubStage />
-        </Stage>
-        <Stage start={0.8} end={1.01}>
-          <GrowthStage />
-        </Stage>
-      </SceneShift>
+  <Stage start={0} end={0.18}>
+    <DataCenterStage />
+  </Stage>
+  <Stage start={0.2} end={0.38}>
+    <CloudNodesStage />
+  </Stage>
+  <Stage start={0.4} end={0.54}>
+    <ShieldStage />
+  </Stage>
+  <Stage start={0.56} end={0.67}>
+    <NetworkHubStage />
+  </Stage>
+  <Stage start={0.69} end={1.01}>
+    <GrowthStage />
+  </Stage>
+</SceneShift>
     </Canvas>
   );
 }
