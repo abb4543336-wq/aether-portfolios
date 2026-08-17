@@ -12,7 +12,6 @@ import { useEffect, useState, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
-// Global UI Components Import (Agar path alag ho toh path check kar lein)
 import { Footer } from "../components/Footer";
 import { ContactModal } from "../components/ContactModal";
 
@@ -131,16 +130,15 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="relative flex min-h-screen flex-col bg-background text-foreground">
-        
-        {/* 🌐 Global Page View (/about, /contact, home render inside Outlet) */}
+        {/* Pages render inside Outlet */}
         <main className="flex-1">
           <Outlet />
         </main>
 
-        {/* 🏢 Global Footer */}
+        {/* Global Single Footer */}
         <Footer onContact={() => setIsContactOpen(true)} />
 
-        {/* 📩 Global Contact Modal */}
+        {/* Contact Modal */}
         <ContactModal open={isContactOpen} onClose={() => setIsContactOpen(false)} />
       </div>
     </QueryClientProvider>

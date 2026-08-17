@@ -24,7 +24,6 @@ import {
 import { SceneBackground } from "@/components/SceneBackground";
 import { ServiceSection, type Service } from "@/components/ServiceSection";
 import { ContactModal } from "@/components/ContactModal";
-import { Footer } from "@/components/Footer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -453,7 +452,6 @@ function Home() {
         </div>
       </section>
 
-      <Footer onContact={() => setOpen(true)} />
       <ContactModal open={open} onClose={() => setOpen(false)} />
     </main>
   );
