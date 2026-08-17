@@ -400,8 +400,8 @@ const SHIFTS: { p: number; x: number }[] = [
   { p: 0.09, x: 4.8 },   // DataCenter Stage
   { p: 0.29, x: -4.8 },  // CloudNodes Stage
   { p: 0.49, x: 4.8 },   // Shield Stage
-  { p: 0.64, x: -4.8 },  // NetworkHub Stage
-  { p: 0.75, x: 4.8 },   // Growth Stage
+  { p: 0.50, x: -4.8 },  // NetworkHub Stage
+  { p: 0.65, x: 4.8 },   // Growth Stage
 ];
 
 function SceneShift({ children }: { children: ReactNode }) {
@@ -454,13 +454,13 @@ export default function SceneCanvas() {
   <Stage start={0.2} end={0.38}>
     <CloudNodesStage />
   </Stage>
-  <Stage start={0.4} end={0.54}>
+  <Stage start={0.4} end={0.45}>
     <ShieldStage />
   </Stage>
-  <Stage start={0.56} end={0.67}>
+  <Stage start={0.47} end={0.6}>
     <NetworkHubStage />
   </Stage>
-  <Stage start={0.69} end={1.01}>
+  <Stage start={0.62} end={1.01}>
     <GrowthStage />
   </Stage>
 </SceneShift>
