@@ -137,3 +137,8 @@
     );
   background-size: 64px 64px;
 }
+@media (max-width: 767px) {
+  canvas {
+    display: none !important;
+  }
+}
