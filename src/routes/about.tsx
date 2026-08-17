@@ -1,18 +1,17 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Target, Users, Zap, ShieldCheck, HeartHandshake, Lightbulb, ArrowLeft, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Target, Lightbulb, Menu, X } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { ContactModal } from "@/components/ContactModal";
-import { Link } from "@tanstack/react-router";
-import { Navbar } from "./index"; // Adjust import if needed, or we can copy/paste a simple nav
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,
 });
 
 function AboutPage() {
-  const [open, setOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <main className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -52,14 +51,17 @@ function AboutPage() {
               }}
             />
           </Link>
+
+          {/* Desktop Navigation */}
           <nav className="hidden items-center gap-7 md:flex">
             <Link to="/" className="text-sm font-medium text-foreground/60 transition-colors hover:text-foreground">Home</Link>
             <Link to="/#cloud" className="text-sm font-medium text-foreground/60 transition-colors hover:text-foreground">Services</Link>
             <Link to="/about" className="text-sm font-medium text-red-600">About</Link>
             <Link to="/contact" className="text-sm font-medium text-foreground/60 transition-colors hover:text-foreground">Contact</Link>
           </nav>
+
           <button
-            onClick={() => setOpen(true)}
+            onClick={() => setIsModalOpen(true)}
             className="hidden rounded-full px-5 py-2 text-sm font-semibold text-white transition-all hover:brightness-110 md:block"
             style={{
               background: "linear-gradient(135deg, #dc2626, #b91c1c)",
@@ -68,7 +70,79 @@ function AboutPage() {
           >
             Talk to us
           </button>
+
+          {/* Mobile Menu Toggle Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="flex items-center justify-center p-1.5 text-foreground transition-colors hover:text-red-600 md:hidden"
+            aria-label="Toggle Mobile Menu"
+          >
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
+
+        {/* Mobile Navigation Dropdown */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="mx-auto mt-2 w-[min(94%,1200px)] rounded-2xl p-6 shadow-xl md:hidden"
+              style={{
+                background: "rgba(255,255,255,0.98)",
+                backdropFilter: "blur(20px)",
+                border: "1px solid rgba(0,0,0,0.08)",
+              }}
+            >
+              <nav className="flex flex-col space-y-4 text-center">
+                <Link
+                  to="/"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-base font-medium text-foreground/70 transition-colors hover:text-red-600"
+                >
+                  Home
+                </Link>
+                <Link
+                  to="/#cloud"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-base font-medium text-foreground/70 transition-colors hover:text-red-600"
+                >
+                  Services
+                </Link>
+                <Link
+                  to="/about"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-base font-semibold text-red-600"
+                >
+                  About
+                </Link>
+                <Link
+                  to="/contact"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-base font-medium text-foreground/70 transition-colors hover:text-red-600"
+                >
+                  Contact
+                </Link>
+
+                <button
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    setIsModalOpen(true);
+                  }}
+                  className="mt-2 w-full rounded-full py-2.5 text-sm font-semibold text-white transition-all hover:brightness-110"
+                  style={{
+                    background: "linear-gradient(135deg, #dc2626, #b91c1c)",
+                    boxShadow: "0 2px 12px rgba(220,38,38,0.28)",
+                  }}
+                >
+                  Talk to us
+                </button>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       {/* Hero */}
@@ -182,7 +256,7 @@ function AboutPage() {
                 { title: "Integrity", icon: "🛡️", desc: "We conduct business with honesty, transparency, and ethical practices." },
                 { title: "Agility", icon: "⚡", desc: "We adapt quickly to changing requirements and deliver solutions efficiently." },
                 { title: "Customer Focus", icon: "👥", desc: "Our clients' success is our top priority, and we go above and beyond to ensure their satisfaction." },
-              ].map((value, i) => (
+              ].map((value) => (
                 <div key={value.title} className="p-6 rounded-xl bg-foreground/4 border border-foreground/10 hover:border-red-500/40 transition-colors">
                   <div className="text-2xl mb-4">{value.icon}</div>
                   <h4 className="text-lg font-semibold mb-2">{value.title}</h4>
@@ -222,8 +296,8 @@ function AboutPage() {
         </div>
       </section>
 
-      <Footer onContact={() => setOpen(true)} />
-      <ContactModal open={open} onClose={() => setOpen(false)} />
+      <Footer onContact={() => setIsModalOpen(true)} />
+      <ContactModal open={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </main>
   );
 }

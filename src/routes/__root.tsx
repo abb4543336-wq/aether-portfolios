@@ -7,10 +7,14 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+
+// Global UI Components Import (Agar path alag ho toh path check kar lein)
+import { Footer } from "../components/Footer";
+import { ContactModal } from "../components/ContactModal";
 
 function NotFoundComponent() {
   return (
@@ -122,11 +126,23 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="relative flex min-h-screen flex-col bg-background text-foreground">
+        
+        {/* 🌐 Global Page View (/about, /contact, home render inside Outlet) */}
+        <main className="flex-1">
+          <Outlet />
+        </main>
+
+        {/* 🏢 Global Footer */}
+        <Footer onContact={() => setIsContactOpen(true)} />
+
+        {/* 📩 Global Contact Modal */}
+        <ContactModal open={isContactOpen} onClose={() => setIsContactOpen(false)} />
+      </div>
     </QueryClientProvider>
   );
 }

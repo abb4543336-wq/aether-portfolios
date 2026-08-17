@@ -1,15 +1,15 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { MapPin, Mail, Clock, Phone, Send } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { MapPin, Mail, Clock, Send, Menu, X } from "lucide-react";
 import { Footer } from "@/components/Footer";
-import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
 function ContactPage() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -42,7 +42,7 @@ function ContactPage() {
 
       <header className="fixed inset-x-0 top-0 z-50">
         <div
-          className="mx-auto mt-4 flex w-[min(94%,1200px)] items-center justify-between rounded-2xl px-5 py-3"
+          className="mx-auto mt-4 flex w-[min(94%,1200px)] items-center justify-between rounded-full px-5 py-3"
           style={{
             background: "rgba(255,255,255,0.92)",
             backdropFilter: "blur(20px) saturate(160%)",
@@ -64,13 +64,73 @@ function ContactPage() {
               }}
             />
           </Link>
+
+          {/* Desktop Navigation */}
           <nav className="hidden items-center gap-7 md:flex">
             <Link to="/" className="text-sm font-medium text-foreground/60 transition-colors hover:text-foreground">Home</Link>
             <Link to="/#cloud" className="text-sm font-medium text-foreground/60 transition-colors hover:text-foreground">Services</Link>
             <Link to="/about" className="text-sm font-medium text-foreground/60 transition-colors hover:text-foreground">About</Link>
             <Link to="/contact" className="text-sm font-medium text-red-600">Contact</Link>
           </nav>
+
+          {/* Mobile Menu Toggle Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="flex items-center justify-center p-1.5 text-foreground transition-colors hover:text-red-600 md:hidden"
+            aria-label="Toggle Mobile Menu"
+          >
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
+
+        {/* Mobile Navigation Dropdown */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="mx-auto mt-2 w-[min(94%,1200px)] rounded-2xl p-6 shadow-xl md:hidden"
+              style={{
+                background: "rgba(255,255,255,0.98)",
+                backdropFilter: "blur(20px)",
+                border: "1px solid rgba(0,0,0,0.08)",
+              }}
+            >
+              <nav className="flex flex-col space-y-4 text-center">
+                <Link
+                  to="/"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-base font-medium text-foreground/70 transition-colors hover:text-red-600"
+                >
+                  Home
+                </Link>
+                <Link
+                  to="/#cloud"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-base font-medium text-foreground/70 transition-colors hover:text-red-600"
+                >
+                  Services
+                </Link>
+                <Link
+                  to="/about"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-base font-medium text-foreground/70 transition-colors hover:text-red-600"
+                >
+                  About
+                </Link>
+                <Link
+                  to="/contact"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-base font-semibold text-red-600"
+                >
+                  Contact
+                </Link>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       {/* Hero */}
