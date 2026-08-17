@@ -277,7 +277,7 @@ export function GrowthStage() {
     const curve = new THREE.QuadraticBezierCurve3(
       new THREE.Vector3(-2.0, -0.5, -1.55), // Start point (Bars ke aage outer space mein)
       new THREE.Vector3(0.6, -0.5, -1.90),  // Middle curve bend
-      new THREE.Vector3(2.2, 3.1, -1.55)    // Top-right tip position
+      new THREE.Vector3(2.0, 2.3, -1.55)    // Top-right tip position
     );
 
     // Thick 3D Curved Stem (Tube)
